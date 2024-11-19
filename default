@@ -1,11 +1,15 @@
 server {
-    listen 80 default_server;
-    listen [::]:80 default_server;
+    listen 443 ssl;
+    listen [::]:43 ssl;
     
     root /usr/share/nginx/html;
     index index.html index.html;
+    
+    ssl_certificate     /etc/ssl/certs/nginx-selfsigned.crt;
+    ssl_certificate_key /etc/ssl/private/nginx-selfsigned.key;
+    ssl_protocols       TLSv1.3;
 
-    server_name _;
+    server_name www.juestrel.42.fr juestrel.42.fr;
     location / {
         try_files $uri $uri/ =404;
     }
