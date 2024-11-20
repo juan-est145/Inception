@@ -12,11 +12,11 @@ services:
     env_file: .env
     volumes:
       - dbData:/var/lib/mysql
-#Make sure to change the devices location and that the login is correct
+# Make sure that the login is correct in device later on
 volumes:
   dbData:
       driver: local
       driver_opts:
         type: local
         o: bind
-        device: /home/juan-est145/data/dbData
+        device: ${HOME}/data/dbData
