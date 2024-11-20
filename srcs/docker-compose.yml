@@ -10,3 +10,13 @@ services:
       context: ./requirements/mariadb
     container_name: mariadb
     env_file: .env
+    volumes:
+      - dbData:/var/lib/mysql
+#Make sure to change the devices location and that the login is correct
+volumes:
+  dbData:
+      driver: local
+      driver_opts:
+        type: local
+        o: bind
+        device: /home/juan-est145/data/dbData
