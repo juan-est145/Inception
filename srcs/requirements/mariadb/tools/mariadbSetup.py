@@ -8,12 +8,10 @@ def setConfigFile(path : str):
 	with open(path, "w") as file:
 		file.write(replace)
 
-# Replace later user, db and password with envs'
-
 mariaExec = "mariadb -e "
-db = f"CREATE DATABASE IF NOT EXISTS db"
-user = f"CREATE USER IF NOT EXISTS 'user'@'%' IDENTIFIED BY 'password'"
-privileges = f"GRANT ALL ON db.* TO 'user'@'%';"
+db = f"CREATE DATABASE IF NOT EXISTS {os.getenv('DB_NAME')}"
+user = f"CREATE USER IF NOT EXISTS '{os.getenv('DB_USER')}'@'%' IDENTIFIED BY '{os.getenv('DB_PASSWORD')}'"
+privileges = f"GRANT ALL ON {os.getenv('DB_NAME')}.* TO '{os.getenv('DB_USER')}'@'%';"
 flush = "FLUSH PRIVILEGES;"
 
 os.system(f"service mariadb start")

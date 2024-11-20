@@ -1,0 +1,12 @@
+services:
+  nginx:
+    build:
+      context: ./requirements/nginx
+    container_name: nginx
+    ports:
+      - "443:443"
+  mariadb:
+    build:
+      context: ./requirements/mariadb
+    container_name: mariadb
+    env_file: .env
