@@ -16,6 +16,13 @@ services:
     env_file: .env
     volumes:
       - dbData:/var/lib/mysql
+  wordpress:
+    build:
+      context: ./requirements/wordpress
+    container_name: wordpress
+    networks:
+      - lan
+    env_file: .env
 # Make sure that the login is correct in device later on
 volumes:
   dbData:
@@ -24,6 +31,12 @@ volumes:
         type: local
         o: bind
         device: ${HOME}/data/dbData
+  wordpress:
+      driver: local
+      driver_opts:
+        type: local
+        o: bind
+        device: ${HOME}/data/wordpress
 networks:
   lan:
     driver: bridge
