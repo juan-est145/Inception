@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 import os
 import urllib.request as request
+import http.client
 
 def setConfigFile(path: str):
 	with open(path) as file:
@@ -14,7 +15,7 @@ def setConfigFile(path: str):
 
 if not os.path.exists("/var/www/html"):
 	os.makedirs("/var/www/html")
-response = request.urlopen("https://wordpress.org/latest.tar.gz")
+response : http.client.HTTPResponse = request.urlopen("https://wordpress.org/latest.tar.gz")
 with open("/tmp/latest.tar.gz", "wb") as file:
     file.write(response.read())
 os.system("tar -xzvf /tmp/latest.tar.gz -C /var/www/html")
