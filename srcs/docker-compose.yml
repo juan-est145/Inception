@@ -3,12 +3,16 @@ services:
     build:
       context: ./requirements/nginx
     container_name: nginx
+    networks:
+      - lan
     ports:
       - "443:443"
   mariadb:
     build:
       context: ./requirements/mariadb
     container_name: mariadb
+    networks:
+      - lan
     env_file: .env
     volumes:
       - dbData:/var/lib/mysql
@@ -20,3 +24,6 @@ volumes:
         type: local
         o: bind
         device: ${HOME}/data/dbData
+networks:
+  lan:
+    driver: bridge
