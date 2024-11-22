@@ -42,6 +42,6 @@ shutil.move("wp-cli.phar", "/usr/local/bin")
 os.system(f"wp-cli.phar core install --allow-root --url={os.getenv('URL')} --title=\"Inception\"\
    --admin_user={os.getenv('WP_ADMIN')} --admin_password={os.getenv('WP_ADMIN_PASS')} \
    --admin_email={os.getenv('WP_ADMIN_EMAIL')} --skip-email --path={configFilePath}")
-# Need to later create a user
-#Test later to install a theme
+os.system(f"wp-cli.phar user create --allow-root {os.getenv('WP_USER')} {os.getenv('WP_USER_EMAIL')} --user_pass={os.getenv('WP_USER_PASS')}\
+   --path=/var/www/html/wordpress --url={os.getenv('URL')}") 
 subprocess.run(["php-fpm7.4", "-F"])
