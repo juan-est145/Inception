@@ -23,6 +23,7 @@ services:
     env_file: .env
     volumes:
       - dbData:/var/lib/mysql
+    restart: always
 
   wordpress:
     build:

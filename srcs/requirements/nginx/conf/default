@@ -34,7 +34,7 @@ server {
     root /var/www/html/myWebsite;
     index index.html index.html;
 
-    server_name www.MyAwesomeCalculator.com MyAwesomeCalculator.com;
+    server_name www.myawesomecalculator.com myawesomecalculator.com;
     location / {
         try_files $uri $uri/ =404;
     }
