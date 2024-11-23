@@ -22,6 +22,8 @@ if not os.path.exists("/var/www/html"):
 	os.makedirs("/var/www/html")
 if not os.path.exists("/run/php"):
 	os.makedirs("/run/php")
+
+# We download the wordpress files and set them up along with phpfm
 getFile("https://wordpress.org/latest.tar.gz", "/tmp/latest.tar.gz")
 os.system("tar -xzvf /tmp/latest.tar.gz -C /var/www/html")
 configFilePath = "/var/www/html/wordpress"
@@ -36,9 +38,13 @@ setConfigFile(f"{configFilePath}/wp-config.php", {
 	"password_here" : os.getenv("DB_PASSWORD"),
 	"localhost" : f"{os.getenv('DB_HOSTNAME')}:{os.getenv('DB_PORT')}"
 })
+
+# We install the wordpress cli to help with the installation
 getFile("https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar", "wp-cli.phar")
 os.chmod("wp-cli.phar", 755)
 shutil.move("wp-cli.phar", "/usr/local/bin")
+
+# Finally we create the admin and a user to the website with the cli
 os.system(f"wp-cli.phar core install --allow-root --url={os.getenv('URL')} --title=\"Inception\"\
    --admin_user={os.getenv('WP_ADMIN')} --admin_password={os.getenv('WP_ADMIN_PASS')} \
    --admin_email={os.getenv('WP_ADMIN_EMAIL')} --skip-email --path={configFilePath}")
