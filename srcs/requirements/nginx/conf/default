@@ -31,10 +31,10 @@ server {
     listen 80;
     listen [::]:80;
     
-    root /usr/share/nginx/html;
+    root /var/www/html/myWebsite;
     index index.html index.html;
 
-    server_name www.foo.com foo.com;
+    server_name www.MyAwesomeCalculator.com MyAwesomeCalculator.com;
     location / {
         try_files $uri $uri/ =404;
     }
