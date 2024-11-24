@@ -36,6 +36,15 @@ services:
       - mariadb
     volumes:
       - wordpress:/var/www/html
+  
+  redis:
+    build:
+      context: ./requirements/bonus/redis
+    container_name: redis
+    networks:
+      - lan
+    volumes:
+      - redis:/var/redis-db
 
 # Make sure that the login is correct in device later on
 volumes:
@@ -52,6 +61,13 @@ volumes:
         type: local
         o: bind
         device: ${HOME}/data/wordpress
+  
+  redis:
+    driver: local
+    driver_opts:
+      type: local
+      o: bind
+      device: ${HOME}/data/redis
 
 networks:
   lan:
