@@ -36,7 +36,8 @@ setConfigFile(f"{configFilePath}/wp-config.php", {
 	"database_name_here" : os.getenv("DB_NAME"),
 	"username_here" : os.getenv("DB_USER"),
 	"password_here" : os.getenv("DB_PASSWORD"),
-	"localhost" : f"{os.getenv('DB_HOSTNAME')}:{os.getenv('DB_PORT')}"
+	"localhost" : f"{os.getenv('DB_HOSTNAME')}:{os.getenv('DB_PORT')}",
+	"/* That's all, stop editing! Happy publishing. */": f"define('WP_REDIS_HOST', {os.getenv('RD_HOST')});\ndefine('WP_REDIS_PORT', {os.getenv('RD_PORT')});",
 })
 
 # We install the wordpress cli to help with the installation
@@ -49,5 +50,11 @@ os.system(f"wp-cli.phar core install --allow-root --url={os.getenv('URL')} --tit
    --admin_user={os.getenv('WP_ADMIN')} --admin_password={os.getenv('WP_ADMIN_PASS')} \
    --admin_email={os.getenv('WP_ADMIN_EMAIL')} --skip-email --path={configFilePath}")
 os.system(f"wp-cli.phar user create --allow-root {os.getenv('WP_USER')} {os.getenv('WP_USER_EMAIL')} --user_pass={os.getenv('WP_USER_PASS')}\
-   --path=/var/www/html/wordpress --url={os.getenv('URL')}") 
+   --path=/var/www/html/wordpress --url={os.getenv('URL')}")
+
+# We install the redis plugin
+os.system(f"wp-cli.phar plugin install redis-cache --activate --allow-root --path=/var/www/html/wordpress")
+os.system(f"wp-cli.phar plugin update --all --allow-root --path=/var/www/html/wordpress")
+os.system(f"wp-cli.phar redis enable --allow-root --path=/var/www/html/wordpress")
+
 subprocess.run(["php-fpm7.4", "-F"])
