@@ -57,6 +57,20 @@ services:
       - lan
     volumes:
       - redis:/var/redis-db
+  
+  ftp:
+    build:
+      context: ./requirements/bonus/ftp
+    container_name: ftp
+    depends_on:
+      - wordpress
+    networks:
+      - lan
+    volumes:
+      - wordpress:/var/proftpd
+    ports:
+      - "21:21"
+    env_file: .env
 
 # Make sure that the login is correct in device later on
 volumes:
