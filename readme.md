@@ -1,9 +1,9 @@
 # Inception
 
-A repository containing the Incepption project of 42 Malaga. The aim of this project is to contenaraize several services in different docker
+A repository containing the Inception project of 42 Malaga. The aim of this project is to contenaraize several services in different docker
 containers and creating a local virtual network for them. The three main services are a mariaDB database, a NGINX server and Wordpress website. 
 
-As a bonus you can also add Adminer for administering the database, a Redis cache for the wordpress site, your own static website aside from the wordpress one, a FTP server of your liking that allows to download files from the Wordpress website and lastly whatever service that you think that might be useful (in my case I chose cadvisor).
+As a bonus you can also add Adminer for administering the database, a Redis cache for the wordpress site, your own static website aside from the wordpress one, a FTP server of your liking that allows to download files from the Wordpress website and lastly, whatever service that you think that might be useful (in my case I chose cadvisor).
 
 ## Dependencies
 In order to run this project you will need to have installed docker-engine and the make tool. If make is not available to your OS, you may use docker compose instead directly on the docker-compose.yml file.
