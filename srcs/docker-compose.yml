@@ -72,6 +72,21 @@ services:
       - "21:21"
     env_file: .env
 
+  cadvisor:
+    build:
+      context: ./requirements/bonus/cadvisor
+    container_name: cadvisor
+    ports:
+      - "3000:8080"
+    networks:
+      - lan
+    volumes:
+      - /:/rootfs:ro
+      - /var/run:/var/run:ro 
+      - /sys:/sys:ro 
+      - /var/lib/docker/:/var/lib/docker:ro
+    restart: always
+
 # Make sure that the login is correct in device later on
 volumes:
   dbData:
