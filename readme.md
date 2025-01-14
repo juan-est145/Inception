@@ -1,7 +1,7 @@
 # Inception
 
 A repository containing the Inception project of 42 Malaga. The aim of this project is to contenaraize several services in different docker
-containers and creating a local virtual network for them. The three main services are a mariaDB database, a NGINX server and Wordpress website. 
+containers and creating a local virtual network for them, WITHOUT using pre-made images from Docker Hub (except for the Os image). The three main services are a mariaDB database, a NGINX server and Wordpress website. 
 
 As a bonus you can also add Adminer for administering the database, a Redis cache for the wordpress site, your own static website aside from the wordpress one, a FTP server of your liking that allows to download files from the Wordpress website and lastly, whatever service that you think that might be useful (in my case I chose cadvisor).
 
